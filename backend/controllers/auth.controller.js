@@ -1,0 +1,26 @@
+const User = require('../models/User')
+const passport = require('../config/passport')
+
+exports.signup = async (req, res) => {
+  const { name, email, password } = req.body
+  const user = await User.register({ name, email }, password)
+  res.status(201).json({ user, msg: 'User created' })
+}
+
+exports.login = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) return res.status(500).json({ err, info })
+    if (!user) return res.status(401).json({ err: { ...info } })
+    req.login(user, (error) => {
+      if (error) return res.status(401).json({ error })
+      return res.status(200).json({ user })
+    })
+  })(req, res, next)
+}
+
+exports.currentUser = (req, res) => res.status(200).json({ user: req.user })
+
+exports.logout = (req, res) => {
+  req.logout()
+  res.status(200).json({ msg: 'Logged out' })
+}
