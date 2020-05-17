@@ -10,7 +10,7 @@ const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
 
 mongoose
-  .connect('mongodb://localhost/backend', { useNewUrlParser: true })
+  .connect(process.env.DB, { useNewUrlParser: true })
   .then((x) => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -29,7 +29,7 @@ app.use(cookieParser())
 // Enable authentication using session + passport
 app.use(
   session({
-    secret: 'irongenerator',
+    secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
@@ -44,5 +44,8 @@ app.use('/', index)
 
 const authRoutes = require('./routes/auth')
 app.use('/auth', authRoutes)
+
+const projectRoutes = require('./routes/project')
+app.use('/project', projectRoutes)
 
 module.exports = app
