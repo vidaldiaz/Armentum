@@ -48,4 +48,10 @@ app.use('/auth', authRoutes)
 const projectRoutes = require('./routes/project')
 app.use('/project', projectRoutes)
 
+const stageRoutes = require('./routes/stage')
+app.use('/stage', stageRoutes)
+
+const teamRoutes = require('./routes/team')
+app.use('/team', teamRoutes)
+
 module.exports = app

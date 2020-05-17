@@ -1,12 +1,13 @@
 const { Schema, model } = require('mongoose')
 
-const stageSchema = new Schema(
+const teamSchema = new Schema(
   {
-    stageName: String,
-    stageTeams: [
+    teamName: String,
+    teamDescription: String,
+    teamMembers: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Team',
+        ref: 'User',
       },
     ],
   },
@@ -16,4 +17,4 @@ const stageSchema = new Schema(
   }
 )
 
-module.exports = model('Stage', stageSchema)
+module.exports = model('Team', teamSchema)
