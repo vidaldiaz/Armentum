@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+body {
+  margin: 0;
+  font-family: 'Didact Gothic', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.main-home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-container {
+  width: 70vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 50px;
+}
+
+.armentum-logo {
+  width: 100px;
+}
+
+.home-buttons {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.main-button {
+  text-decoration: none;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-weight: 700;
+}
+
+.armentum-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.return-main {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  border: 1px solid black;
+  padding: 5px 15px;
+  color: white;
+  background-color: black;
+  font-weight: 600;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.dynamic-delete-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  color: #999;
+  transition: all 0.3s;
+}
+.dynamic-delete-button:hover {
+  color: #777;
+}
+.dynamic-delete-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

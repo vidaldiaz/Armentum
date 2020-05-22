@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const { Schema, model } = mongoose
+const { Schema, model } = require('mongoose')
 
 const projectSchema = new Schema(
   {
@@ -12,7 +11,7 @@ const projectSchema = new Schema(
     projectStages: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Stages',
+        ref: 'Stage',
       },
     ],
   },
