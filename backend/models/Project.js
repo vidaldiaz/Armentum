@@ -11,7 +11,7 @@ const projectSchema = new Schema(
     projectStages: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Stages',
+        ref: 'Stage',
       },
     ],
   },

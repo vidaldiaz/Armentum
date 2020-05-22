@@ -62,4 +62,7 @@ app.use('/stage', stageRoutes)
 const teamRoutes = require('./routes/team')
 app.use('/team', teamRoutes)
 
+const userRoutes = require('./routes/user')
+app.use('/user', userRoutes)
+
 module.exports = app
