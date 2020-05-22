@@ -8,7 +8,6 @@ const logger = require('morgan')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
-const cors = require('cors')
 
 mongoose
   .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -37,13 +36,6 @@ app.use(
   })
 )
 
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://localhost:3001',
-  })
-)
-
 app.use(flash())
 require('./passport')(app)
 
@@ -55,14 +47,5 @@ app.use('/auth', authRoutes)
 
 const projectRoutes = require('./routes/project')
 app.use('/project', projectRoutes)
-
-const stageRoutes = require('./routes/stage')
-app.use('/stage', stageRoutes)
-
-const teamRoutes = require('./routes/team')
-app.use('/team', teamRoutes)
-
-const userRoutes = require('./routes/user')
-app.use('/user', userRoutes)
 
 module.exports = app

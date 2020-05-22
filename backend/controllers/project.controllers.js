@@ -1,13 +1,12 @@
 const Project = require('../models/Project')
 
 exports.createProject = async (req, res) => {
-  const { projectName, projectDescription, projectOwner } = req.body
-  // console.log(req.user)
-  // const owner = req.user._id
+  const { projectName, projectDescription } = req.body
+  const owner = req.user.id
   const project = await Project.create({
     projectName,
     projectDescription,
-    projectOwner,
+    owner,
     projectStages: [],
   })
 
@@ -28,14 +27,13 @@ exports.detailedProject = async (req, res) => {
 
 exports.updateProject = async (req, res) => {
   const { id } = req.params
-  const { projectName, projectDescription, projectOwner, projectStages } = req.body
+  const { projectName, projectDescription, projectStages } = req.body
 
   const project = await Project.findByIdAndUpdate(
     id,
     {
       projectName,
       projectDescription,
-      projectOwner,
       projectStages,
     },
     { new: true }
@@ -48,21 +46,4 @@ exports.deleteProject = async (req, res) => {
   await Project.findByIdAndDelete(id)
 
   res.status(200).json({ message: 'The project has been deleted' })
-}
-
-exports.attachStage = async (req, res) => {
-  const { id } = req.params
-  const { projectName, projectDescription, projectOwner, projectStages } = req.body
-  const project = await Project.findByIdAndUpdate(
-    id,
-    {
-      projectName,
-      projectDescription,
-      projectOwner,
-      $push: { projectStages: projectStages },
-    },
-    { new: true }
-  )
-
-  res.status(200).json(project)
 }

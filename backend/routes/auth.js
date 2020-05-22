@@ -60,8 +60,4 @@ router.get('/logout', (req, res) => {
   res.status(200).json({ message: 'Logged Out' })
 })
 
-router.get('/currentUser', (req, res) => {
-  res.status(200).json({ user: req.user })
-})
-
 module.exports = router
