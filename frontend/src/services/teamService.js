@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const service = axios.create({
-  baseURL: 'http://localhost/3000/team',
+  baseURL: 'http://localhost:3000/team',
 })
 
 const TEAM_SERVICE = {
@@ -21,3 +21,5 @@ const TEAM_SERVICE = {
     return await service.delete(`/delete/${id}`)
   },
 }
+
+export default TEAM_SERVICE

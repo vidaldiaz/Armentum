@@ -23,6 +23,9 @@ const PROJECT_SERVICE = {
   getOneProject: async (id) => {
     return await service.get(`/${id}`)
   },
+  getStagesFullData: async (id) => {
+    return await service.get(`/stages/${id}`)
+  },
 }
 
 export default PROJECT_SERVICE

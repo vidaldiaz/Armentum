@@ -1,8 +1,8 @@
 const Team = require('../models/Team')
 
 exports.createTeam = async (req, res) => {
-  const { teamName, teamDescription, teamMembers } = req.body
-  const team = await Team.create({ teamName, teamDescription, teamMembers })
+  const { teamName, teamDescription } = req.body
+  const team = await Team.create({ teamName, teamDescription })
 
   res.status(201).json({ team })
 }
