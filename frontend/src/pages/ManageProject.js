@@ -6,7 +6,7 @@ import STAGE_SERVICE from '../services/stageService'
 class ManageProject extends Component {
   state = {
     projectData: null,
-    stagesData: [],
+    stagesData: null,
   }
 
   componentDidMount = async () => {
@@ -14,19 +14,15 @@ class ManageProject extends Component {
     const { project } = generalData.data
     this.setState({ projectData: project })
     //console.log(this.state.projectData)
-  }
-
-  getStagesData = async () => {
     const stagesData = await PROJECT_SERVICE.getStagesFullData(this.props.match.params.id)
-    this.setState({ stagesData })
-    console.log(this.state.stagesData)
+    this.setState({ stagesData: stagesData.data })
+    //console.log(this.state.stagesData)
   }
 
   render() {
-    const fullData = this.state.stagesData
     return (
       <div>
-        <StageCard projectData={this.state.projectData} />
+        <StageCard projectData={this.state?.projectData} stagesData={this.state?.stagesData} />
       </div>
     )
   }

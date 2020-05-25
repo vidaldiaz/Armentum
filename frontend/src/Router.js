@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import NewProject from './pages/NewProject'
 import ManageProject from './pages/ManageProject'
 import NewTeam from './pages/NewTeam'
+import AllTeams from './pages/AllTeams'
 
 export default function Router() {
   return (
@@ -20,6 +21,7 @@ export default function Router() {
         <Route exact path="/project/new" component={NewProject} />
         <Route exact path="/project/:id" component={ManageProject} />
         <Route exact path="/team/new" component={NewTeam} />
+        <Route exact path="/team/all" component={AllTeams} />
       </Switch>
     </BrowserRouter>
   )

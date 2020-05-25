@@ -22,6 +22,8 @@ class Profile extends Component {
         <Link to={'/project/new'}>Create Project</Link>
         <br />
         <Link to={'/team/new'}>Create Team</Link>
+        <br />
+        <Link to={'/team/all'}>Manage Teams</Link>
         <ProjectsByUser />
       </div>
     )

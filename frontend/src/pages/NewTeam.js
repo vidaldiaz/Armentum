@@ -10,25 +10,35 @@ class NewTeam extends Component {
     teamName: '',
     teamDescription: '',
     allUsers: [],
-    members: [],
+    teamMembers: null,
   }
 
   componentDidMount = async () => {
     const response = await USER_SERVICE.allUsers()
     const users = response.data.users
     this.setState({ allUsers: users })
-    //console.log(this.state.allUsers)
   }
 
   onFinish = async (values) => {
-    console.log(this.state.members)
-    console.log('Values:')
-    console.log(values)
-    // console.log('Value:')
-    // console.log(value)
-    console.log(this.state)
     const { teamName, teamDescription } = this.state
-    const responseTeam = await TEAM_SERVICE.newTeam({ teamName, teamDescription })
+    const responseTeam = await TEAM_SERVICE.newTeam({
+      teamName,
+      teamDescription,
+    })
+    console.log('new Team', responseTeam)
+
+    const newTeamId = responseTeam.data._id
+    const allTeamMembers = this.state.teamMembers
+
+    allTeamMembers.forEach(async (member) => {
+      const team = await TEAM_SERVICE.addMember(newTeamId, {
+        teamName,
+        teamDescription,
+        teamMembers: member,
+      })
+    })
+
+    this.props.history.push(`/team/all`)
   }
 
   handleInputChange = ({ target: { name, value } }) => {
@@ -45,10 +55,8 @@ class NewTeam extends Component {
     }
 
     const handleChange = (value) => {
-      this.setState({ members: this.value })
-      console.log('value', value)
-      console.log(`selected ${value}`)
-      return value
+      this.setState({ teamMembers: value })
+      console.log(this.state.teamMembers)
     }
 
     return (

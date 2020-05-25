@@ -68,13 +68,9 @@ exports.attachStage = async (req, res) => {
 }
 
 exports.getStagesFullData = async (req, res) => {
-  // const { id } = req.params
-  // const projectStages = await Project.findById(id).populate('projectStages')
-  // console.log(projectStages)
-
   const { id } = req.params
-  const projectStages = await Promise.all(Project.findById(id).populate('projectStages'))
-  console.log(projectStages)
+  const projectStages = await Project.findById(id).populate('projectStages')
+  console.log(projectStages.projectStages)
 
-  res.status(200).json(projectStages)
+  res.status(200).json(projectStages.projectStages)
 }

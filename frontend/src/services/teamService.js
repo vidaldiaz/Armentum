@@ -20,6 +20,12 @@ const TEAM_SERVICE = {
   deleteTeam: async (id) => {
     return await service.delete(`/delete/${id}`)
   },
+  addMember: async (id, data) => {
+    return await service.patch(`/${id}`, data)
+  },
+  userFullData: async (id) => {
+    return await service.get(`/users/${id}`)
+  },
 }
 
 export default TEAM_SERVICE
